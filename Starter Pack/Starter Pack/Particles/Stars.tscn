@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Art/Path.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.24183, 0.75817, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.625, 0.292969, 0.292969, 1, 0.664062, 0.420227, 0.420227, 1, 1, 1, 1, 1 )
+
+[node name="Stars" type="CPUParticles2D"]
+position = Vector2( 400, 0 )
+rotation = 1.5708
+amount = 120
+lifetime = 32.0
+preprocess = 32.0
+texture = ExtResource( 1 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 400 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 20.0
+angular_velocity = 180.0
+angular_velocity_random = 1.0
+scale_amount = 0.2
+color_ramp = SubResource( 1 )
+
