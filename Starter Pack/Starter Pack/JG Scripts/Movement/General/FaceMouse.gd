@@ -7,7 +7,7 @@ func _ready():
 	body = get_parent()
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var disp = body.global_position - body.get_global_mouse_position()
 	var dir = disp.normalized()
 	body.rotation = dir.angle()

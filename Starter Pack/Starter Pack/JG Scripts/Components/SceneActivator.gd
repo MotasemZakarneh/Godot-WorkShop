@@ -1,4 +1,4 @@
-extends PlayGround
+extends JG
 class_name SceneActivator
 
 var body
