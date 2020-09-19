@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Starter Pack/Art/Path2.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=4]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( -1.40286, -10.3583, -11.8661, -1.05768, -5.55495, 10.9003, 9.22647, 9.57166, 10.7212, -2.8846 )
+
+[node name="Level_00" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 361.0
+margin_bottom = 217.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon2" type="Sprite" parent="."]
+position = Vector2( 21.4999, 42.4518 )
+scale = Vector2( 1.31928, 2.10907 )
+texture = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 235.651, 108.421 )
+
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 120.218, 80.032 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 181.053, 108.421 )
+current = true
+zoom = Vector2( 0.35, 0.35 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 156.195, 38.0295 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 124.864, 151.437 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 321.027, 46.5435 )
+
+[node name="Enemy5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 334.897, 170.259 )
+
+[node name="icon" type="Sprite" parent="."]
+position = Vector2( 239.997, 50.3385 )
+texture = ExtResource( 2 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.0627451, 0.00392157, 0.00392157, 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 188.421, 114.918 )
+scale = Vector2( 7.97539, 6.38194 )
+texture = ExtResource( 3 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( 235.651, 108.421 )
+occluder = SubResource( 1 )

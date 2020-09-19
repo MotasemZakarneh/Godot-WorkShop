@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://JG/FSM/Example/ColorSwitcherFSM.gd" type="Script" id=1]
+[ext_resource path="res://JG/FSM/icon2.png" type="Texture" id=2]
+[ext_resource path="res://JG/FSM/Example/UnitController.gd" type="Script" id=3]
+[ext_resource path="res://JG/FSM/Example/States/Blue.gd" type="Script" id=4]
+[ext_resource path="res://JG/FSM/Example/States/Green.gd" type="Script" id=5]
+[ext_resource path="res://JG/FSM/Example/States/Red.gd" type="Script" id=6]
+
+
+[node name="Unit" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource( 1 )
+auto_run = true
+
+[node name="Red" type="Node" parent="Node"]
+script = ExtResource( 6 )
+
+[node name="Green" type="Node" parent="Node"]
+script = ExtResource( 5 )
+
+[node name="Blue" type="Node" parent="Node"]
+script = ExtResource( 4 )
