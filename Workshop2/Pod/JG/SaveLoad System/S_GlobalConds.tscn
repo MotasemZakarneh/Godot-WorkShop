@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://JG/SaveLoad System/S_GlobalConds.gd" type="Script" id=1]
+
+[node name="S_GlobalConds" type="Node2D" groups=[
+"GameSave",
+]]
+script = ExtResource( 1 )

@@ -1,0 +1,380 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "MoveSystem",
+"class": "ADRotate",
+"language": "GDScript",
+"path": "res://JG/Movement/General/ADRotate.gd"
+}, {
+"base": "JG",
+"class": "AI",
+"language": "GDScript",
+"path": "res://JG/FSM/AI.gd"
+}, {
+"base": "MoveSystem",
+"class": "AutoMove",
+"language": "GDScript",
+"path": "res://JG/Movement/General/AutoMove.gd"
+}, {
+"base": "MoveSystem",
+"class": "AutoRotate",
+"language": "GDScript",
+"path": "res://JG/Movement/General/AutoRotate.gd"
+}, {
+"base": "WeaponSystem",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://JG/Weapon System/Bullet.gd"
+}, {
+"base": "Resource",
+"class": "CharaAnimData",
+"language": "GDScript",
+"path": "res://JG/TopDownIso/CharaAnimData.gd"
+}, {
+"base": "Object",
+"class": "Condition",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Core/Condition.gd"
+}, {
+"base": "Object",
+"class": "Damager",
+"language": "GDScript",
+"path": "res://JG/Components/Component Objs/Damager.gd"
+}, {
+"base": "HealthSystem",
+"class": "DamagerNode",
+"language": "GDScript",
+"path": "res://JG/Health System/DamagerNode.gd"
+}, {
+"base": "Node",
+"class": "Extentions",
+"language": "GDScript",
+"path": "res://JG/Bases/Extentions.gd"
+}, {
+"base": "MoveSystem",
+"class": "FaceMouse",
+"language": "GDScript",
+"path": "res://JG/Movement/General/FaceMouse.gd"
+}, {
+"base": "MoveSystem",
+"class": "FollowTarget",
+"language": "GDScript",
+"path": "res://JG/Movement/General/FollowTarget.gd"
+}, {
+"base": "SaveLoadSystem",
+"class": "GameSavable",
+"language": "GDScript",
+"path": "res://JG/SaveLoad System/Core/GameSavable.gd"
+}, {
+"base": "InteractionSystem",
+"class": "GlobalCondsSource",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Core/GlobalCondsSource.gd"
+}, {
+"base": "HealthSystem",
+"class": "Health",
+"language": "GDScript",
+"path": "res://JG/Health System/Health.gd"
+}, {
+"base": "JG",
+"class": "HealthSystem",
+"language": "GDScript",
+"path": "res://JG/Bases/HealthSystem.gd"
+}, {
+"base": "InteractionSystem",
+"class": "InstanceCondsSource",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Core/InstCondsSource.gd"
+}, {
+"base": "InteractionSystem",
+"class": "Interactable",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Core/Interactable.gd"
+}, {
+"base": "InteractionSystem",
+"class": "InteractableCollection",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Core/InteractableCollection.gd"
+}, {
+"base": "JG",
+"class": "InteractionSystem",
+"language": "GDScript",
+"path": "res://JG/Interactable System/InteractionSystem.gd"
+}, {
+"base": "TopDownISO",
+"class": "IsoCharaAnimator",
+"language": "GDScript",
+"path": "res://JG/TopDownIso/CharaAnimatorISO.gd"
+}, {
+"base": "Node2D",
+"class": "JG",
+"language": "GDScript",
+"path": "res://JG/Bases/JG.gd"
+}, {
+"base": "MoveSystem",
+"class": "KinematicMove",
+"language": "GDScript",
+"path": "res://JG/Movement/Bases/KinematicMove.gd"
+}, {
+"base": "SimpleComponent",
+"class": "LocalizedText",
+"language": "GDScript",
+"path": "res://JG/Components/LocalizedText.gd"
+}, {
+"base": "JG",
+"class": "MoveSystem",
+"language": "GDScript",
+"path": "res://JG/Bases/MoveSystem.gd"
+}, {
+"base": "Object",
+"class": "Mover",
+"language": "GDScript",
+"path": "res://JG/Components/Component Objs/Mover.gd"
+}, {
+"base": "KinematicMove",
+"class": "PlatformerMove",
+"language": "GDScript",
+"path": "res://JG/Movement/General/Kinematc Only/PlatformerMove.gd"
+}, {
+"base": "RigidMove",
+"class": "PushMove",
+"language": "GDScript",
+"path": "res://JG/Movement/Rigid Body/PushMove.gd"
+}, {
+"base": "Reaction",
+"class": "R_Debug",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Reaction System/R_Debug.gd"
+}, {
+"base": "Reaction",
+"class": "R_MoveNode",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Reaction System/R_MoveNode.gd"
+}, {
+"base": "Reaction",
+"class": "R_Print",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Reaction System/R_Print.gd"
+}, {
+"base": "Reaction",
+"class": "R_SetCollisions_State",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Reaction System/R_SetCollisionsState.gd"
+}, {
+"base": "Reaction",
+"class": "R_SetVisibility",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Reaction System/R_SetVisiblity.gd"
+}, {
+"base": "Reaction",
+"class": "R_SpawnEnemies",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Reaction System/R_SpawnEnemies.gd"
+}, {
+"base": "Reaction",
+"class": "R_TurnOffCol",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Reaction System/R_TurnOffCol.gd"
+}, {
+"base": "Reaction",
+"class": "R_UpdateCondition",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Reaction System/R_UpdateCondition.gd"
+}, {
+"base": "ReactionSystem",
+"class": "Reaction",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Reaction System/Bases/Reaction.gd"
+}, {
+"base": "ReactionSystem",
+"class": "ReactionCollection",
+"language": "GDScript",
+"path": "res://JG/Interactable System/Reaction System/Bases/ReactionCollection.gd"
+}, {
+"base": "InteractionSystem",
+"class": "ReactionSystem",
+"language": "GDScript",
+"path": "res://JG/Bases/ReactionSystem.gd"
+}, {
+"base": "MoveSystem",
+"class": "RigidMove",
+"language": "GDScript",
+"path": "res://JG/Movement/Bases/RigidMove.gd"
+}, {
+"base": "GameSavable",
+"class": "S_CollisionState",
+"language": "GDScript",
+"path": "res://JG/SaveLoad System/S_CollisionState.gd"
+}, {
+"base": "GameSavable",
+"class": "S_GlobalConds",
+"language": "GDScript",
+"path": "res://JG/SaveLoad System/S_GlobalConds.gd"
+}, {
+"base": "GameSavable",
+"class": "S_InstConds",
+"language": "GDScript",
+"path": "res://JG/SaveLoad System/S_InstConds.gd"
+}, {
+"base": "GameSavable",
+"class": "S_Level",
+"language": "GDScript",
+"path": "res://JG/SaveLoad System/S_Level.gd"
+}, {
+"base": "GameSavable",
+"class": "S_Name",
+"language": "GDScript",
+"path": "res://JG/SaveLoad System/S_Name.gd"
+}, {
+"base": "GameSavable",
+"class": "S_Position",
+"language": "GDScript",
+"path": "res://JG/SaveLoad System/S_Position.gd"
+}, {
+"base": "SaveLoadSystem",
+"class": "SaveLoadJson",
+"language": "GDScript",
+"path": "res://JG/SaveLoad System/Core/SaveLoadJson.gd"
+}, {
+"base": "JG",
+"class": "SaveLoadSystem",
+"language": "GDScript",
+"path": "res://JG/SaveLoad System/SaveLoadSystem.gd"
+}, {
+"base": "SimpleComponent",
+"class": "SceneActivator",
+"language": "GDScript",
+"path": "res://JG/Components/SceneActivator.gd"
+}, {
+"base": "WeaponSystem",
+"class": "Shooter",
+"language": "GDScript",
+"path": "res://JG/Weapon System/Shooter.gd"
+}, {
+"base": "JG",
+"class": "SimpleComponent",
+"language": "GDScript",
+"path": "res://JG/Components/SimpleComponent.gd"
+}, {
+"base": "JG",
+"class": "SimpleSaver",
+"language": "GDScript",
+"path": "res://JG/SimpleSaver/SimpleSaver.gd"
+}, {
+"base": "SimpleSaver",
+"class": "SimpleSettings",
+"language": "GDScript",
+"path": "res://JG/SimpleSaver/SimpleSettings.gd"
+}, {
+"base": "AI",
+"class": "State",
+"language": "GDScript",
+"path": "res://JG/FSM/State.gd"
+}, {
+"base": "AI",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://JG/FSM/StateMachine.gd"
+}, {
+"base": "JG",
+"class": "TopDownISO",
+"language": "GDScript",
+"path": "res://JG/TopDownIso/TopDownISO.gd"
+}, {
+"base": "RigidMove",
+"class": "TorqueRotate",
+"language": "GDScript",
+"path": "res://JG/Movement/Rigid Body/TorqueRotate.gd"
+}, {
+"base": "MoveSystem",
+"class": "WASDMove",
+"language": "GDScript",
+"path": "res://JG/Movement/General/WASDMove.gd"
+}, {
+"base": "JG",
+"class": "WeaponSystem",
+"language": "GDScript",
+"path": "res://JG/Bases/WeaponSystem.gd"
+} ]
+_global_script_class_icons={
+"ADRotate": "",
+"AI": "",
+"AutoMove": "",
+"AutoRotate": "",
+"Bullet": "",
+"CharaAnimData": "",
+"Condition": "",
+"Damager": "",
+"DamagerNode": "",
+"Extentions": "",
+"FaceMouse": "",
+"FollowTarget": "",
+"GameSavable": "",
+"GlobalCondsSource": "",
+"Health": "",
+"HealthSystem": "",
+"InstanceCondsSource": "",
+"Interactable": "",
+"InteractableCollection": "",
+"InteractionSystem": "",
+"IsoCharaAnimator": "",
+"JG": "",
+"KinematicMove": "",
+"LocalizedText": "",
+"MoveSystem": "",
+"Mover": "",
+"PlatformerMove": "",
+"PushMove": "",
+"R_Debug": "",
+"R_MoveNode": "",
+"R_Print": "",
+"R_SetCollisions_State": "",
+"R_SetVisibility": "",
+"R_SpawnEnemies": "",
+"R_TurnOffCol": "",
+"R_UpdateCondition": "",
+"Reaction": "",
+"ReactionCollection": "",
+"ReactionSystem": "",
+"RigidMove": "",
+"S_CollisionState": "",
+"S_GlobalConds": "",
+"S_InstConds": "",
+"S_Level": "",
+"S_Name": "",
+"S_Position": "",
+"SaveLoadJson": "",
+"SaveLoadSystem": "",
+"SceneActivator": "",
+"Shooter": "",
+"SimpleComponent": "",
+"SimpleSaver": "",
+"SimpleSettings": "",
+"State": "",
+"StateMachine": "",
+"TopDownISO": "",
+"TorqueRotate": "",
+"WASDMove": "",
+"WeaponSystem": ""
+}
+
+[application]
+
+config/name="Pod"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=800
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

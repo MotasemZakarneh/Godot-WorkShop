@@ -1,0 +1,2 @@
+extends InteractionSystem
+class_name ReactionSystem
