@@ -87,7 +87,7 @@ static func get_children_of_type(node:Node,types : Array):
 	
 	return filtered
 
-static func test_groups_on_node(node,groups):
+static func test_groups_on_node(node:Node,groups:Array):
 	for g in groups:
 		if node.is_in_group(g):
 			return true

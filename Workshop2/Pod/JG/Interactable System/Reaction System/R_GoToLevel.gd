@@ -10,7 +10,7 @@ export (PackedScene) var level : PackedScene
 export var do_fade = true
 export var fade_dur = -1
 
-const fader_scene = preload("res://JG/Utils/Scenes/Fader.tscn")
+const fader_scene = preload("res://JG/Components/SceneFader/Fader.tscn")
 
 func _react():
 	if do_fade:

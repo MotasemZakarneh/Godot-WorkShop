@@ -20,3 +20,5 @@ shape = SubResource( 1 )
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource( 2 )
+[connection signal="on_dead" from="Health" to="." method="_on_Health_on_dead"]
+[connection signal="on_recieved_damage" from="Health" to="." method="_on_Health_on_recieved_damage"]
