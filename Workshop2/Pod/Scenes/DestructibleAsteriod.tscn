@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Asteriod.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/DestructableWall.gd" type="Script" id=2]
+[ext_resource path="res://JG/Health System/Health.gd" type="Script" id=3]
+
+[node name="DestructibleAsteriod" instance=ExtResource( 1 )]
+position = Vector2( 0.396851, 0 )
+script = ExtResource( 2 )
+danger_point = 0.6
+
+[node name="Health" type="Node2D" parent="." index="4"]
+script = ExtResource( 3 )
+max_health = 4
+[connection signal="on_dead" from="Health" to="." method="_on_Health_on_dead"]
+[connection signal="on_recieved_damage" from="Health" to="." method="_on_Health_on_recieved_damage"]

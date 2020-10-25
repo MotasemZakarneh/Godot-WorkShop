@@ -2,7 +2,8 @@ extends SimpleComponent
 class_name SimpleTrigger
 
 """
-Must be parented to an Area2D to work, and have the signals called appropriately
+Must be parented to an Area2D to work,
+and have the signals called appropriately
 """
 
 signal on_enter(node)

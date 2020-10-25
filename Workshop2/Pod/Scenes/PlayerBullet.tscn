@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://JG/Weapon System/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://JG/Movement/General/AutoMove.gd" type="Script" id=2]
+[ext_resource path="res://Art/Pack 1/Blue/bullet.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="PlayerBullet" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Bullet" type="Node2D" parent="."]
+script = ExtResource( 1 )
+hit_groups = [ "HittableEnviro", "Enemy" ]
+damage_type = "Fire"
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Bullet"]
+
+[node name="AutoMove" type="Node2D" parent="."]
+script = ExtResource( 2 )
+speed = 400
+dir = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.796078, 0.686275, 0.686275, 1 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )

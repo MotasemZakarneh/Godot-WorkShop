@@ -231,3 +231,11 @@ static func get_visual_body(node:Node):
 	if sprite == null:
 		sprite = node
 	return node
+
+static func set_collision_state(node:Node,state:bool):
+	var children = get_children_of_type(node,[CollisionShape2D,CollisionPolygon2D])
+	if node is CollisionShape2D or node is CollisionPolygon2D:
+		node.set_deferred("disabled",!state)
+	for c in children:
+		c.set_deferred("disabled",!state)
+	pass

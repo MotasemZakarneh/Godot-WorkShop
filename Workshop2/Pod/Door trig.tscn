@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://JG/Health System/Health.gd" type="Script" id=1]
+[ext_resource path="res://JG/Interactable System/Reaction System/Bases/ReactionCollection.gd" type="Script" id=3]
+[ext_resource path="res://Art/Pack 1/Blue/Spacebombs/1.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/DestructableWall.gd" type="Script" id=5]
+[ext_resource path="res://JG/Interactable System/Reaction System/R_SetCollisionsState.gd" type="Script" id=6]
+[ext_resource path="res://JG/Interactable System/Reaction System/R_SetVisiblity.gd" type="Script" id=7]
+
+[node name="Door trig" type="StaticBody2D" groups=[
+"HittableEnviro",
+]]
+position = Vector2( 131.789, -460.57 )
+rotation = -2.29678
+script = ExtResource( 5 )
+danger_point = 0.6
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -1.71912, -63.7491, 27.7455, -60.1011, 44.5824, -48.3152, 52.7203, -37.0906, 79.0981, -34.5651, 82.4655, 20.9968, 53.2815, 18.4713, 37.8477, 38.395, 13.7147, 50.742, -16.5917, 43.1654, -44.0921, 20.155, -75.8016, 16.7876, -74.1179, -12.1158, -71.5924, -37.9324, -44.0921, -35.6875, -28.3776, -57.8561 )
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 2.98023e-08
+texture = ExtResource( 4 )
+
+[node name="ReactionCollection" type="Node2D" parent="."]
+script = ExtResource( 3 )
+obj_to_destroy_after_done = NodePath("..")
+
+[node name="R_SetCollisions_State" type="Node2D" parent="ReactionCollection"]
+rotation = 2.98023e-08
+script = ExtResource( 6 )
+nodes_group = "Block 1"
+
+[node name="R_SetVisibility" type="Node2D" parent="ReactionCollection"]
+rotation = 2.98023e-08
+script = ExtResource( 7 )
+state = false
+nodes_group = "Block 1"
+[connection signal="on_dead" from="Health" to="ReactionCollection" method="react_n"]
+[connection signal="on_recieved_damage" from="Health" to="." method="_on_Health_on_recieved_damage"]

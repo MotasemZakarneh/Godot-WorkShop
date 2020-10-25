@@ -1,7 +1,7 @@
 extends ReactionSystem
 class_name Reaction
-export var reaction_delay = 0
-export var reaction_duration = 0
+export var reaction_delay = 0.0
+export var reaction_duration = 0.0
 
 signal on_completed
 const reaction_group = "Reaction"

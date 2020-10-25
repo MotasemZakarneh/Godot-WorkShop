@@ -1,33 +1,41 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://PlayerBullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/PlayerBullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://JG/Art/Enemy.png" type="Texture" id=2]
 [ext_resource path="res://JG/Movement/General/WASDMove.gd" type="Script" id=3]
-[ext_resource path="res://Wall.tscn" type="PackedScene" id=4]
-[ext_resource path="res://PlayerSplitShooter.gd" type="Script" id=5]
-[ext_resource path="res://DestructableWall.tscn" type="PackedScene" id=6]
-[ext_resource path="res://JG/Interactable System/Core/Interactable.gd" type="Script" id=7]
-[ext_resource path="res://JG/Interactable System/Core/InteractableCollection.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/DestructibleAsteriod.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/PlayerSplitShooter.gd" type="Script" id=5]
+[ext_resource path="res://Door trig.tscn" type="PackedScene" id=6]
 [ext_resource path="res://JG/Health System/Health.gd" type="Script" id=9]
-[ext_resource path="res://JG/Interactable System/Reaction System/R_Print.gd" type="Script" id=10]
-[ext_resource path="res://JG/Interactable System/Core/InstCondsSource.gd" type="Script" id=11]
-[ext_resource path="res://JG/Interactable System/Reaction System/R_MoveNode.gd" type="Script" id=12]
-[ext_resource path="res://JG/Interactable System/Reaction System/R_SetCollisionsState.gd" type="Script" id=13]
-[ext_resource path="res://JG/Interactable System/Reaction System/R_SetVisiblity.gd" type="Script" id=14]
 [ext_resource path="res://JG/Components/SimpleTrigger.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/Asteriod.tscn" type="PackedScene" id=16]
+[ext_resource path="res://JG/Health System/DamagerNode.gd" type="Script" id=17]
+[ext_resource path="res://Fonts/Kenney Future.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://GameUI.gd" type="Script" id=19]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.15891
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 21.2194
+[sub_resource type="CircleShape2D" id=3]
+radius = 12.8555
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 18 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 22.1949
 
 [node name="Level" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="." groups=[
 "Player",
 ]]
-position = Vector2( 7.1433, 37.3039 )
+position = Vector2( -1.4162, 2.33389 )
 
 [node name="BodyDisplacer" type="Node2D" parent="Player"]
 rotation = 1.5708
@@ -60,82 +68,444 @@ rotation = 1.5708
 [node name="Health" type="Node2D" parent="Player"]
 script = ExtResource( 9 )
 
-[node name="Environment" type="Node2D" parent="."]
+[node name="Area2D" type="Area2D" parent="Player"]
 
-[node name="Wall" parent="Environment" instance=ExtResource( 4 )]
-position = Vector2( -30, -60 )
+[node name="DamagerNode" type="Node2D" parent="Player/Area2D"]
+script = ExtResource( 17 )
+hit_groups = [ "HittableEnviro" ]
+damage_type = "Fire"
 
-[node name="Wall2" parent="Environment" instance=ExtResource( 4 )]
-position = Vector2( -10, -60 )
-
-[node name="Wall3" parent="Environment" instance=ExtResource( 4 )]
-position = Vector2( 10, -60 )
-
-[node name="Wall4" parent="Environment" instance=ExtResource( 4 )]
-position = Vector2( 30, -60 )
-
-[node name="PlayerBullet" parent="." instance=ExtResource( 1 )]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource( 3 )
 
 [node name="Destructible Enviro" type="Node2D" parent="."]
 
-[node name="Destructible Wall2" parent="Destructible Enviro" instance=ExtResource( 6 )]
-position = Vector2( 67.3759, 31.2312 )
+[node name="DestructibleAsteriod" parent="Destructible Enviro" instance=ExtResource( 4 )]
+position = Vector2( 38.6355, -211.522 )
 
-[node name="Destructible Wall3" parent="Destructible Enviro" instance=ExtResource( 6 )]
-position = Vector2( 95.9814, -23.3311 )
+[node name="DestructibleAsteriod4" parent="Destructible Enviro" instance=ExtResource( 4 )]
+position = Vector2( 7.95959, -224.265 )
 
-[node name="Destructible Wall4" parent="Destructible Enviro" instance=ExtResource( 6 )]
-position = Vector2( 129.884, 51.361 )
+[node name="DestructibleAsteriod5" parent="Destructible Enviro" instance=ExtResource( 4 )]
+position = Vector2( -29.7954, -210.578 )
 
-[node name="Destructible Wall5" parent="Destructible Enviro" instance=ExtResource( 6 )]
-position = Vector2( 81.6786, 110.161 )
+[node name="DestructibleAsteriod6" parent="Destructible Enviro" instance=ExtResource( 4 )]
+position = Vector2( -45.8413, -195.004 )
 
-[node name="Destructible Wall6" parent="Destructible Enviro" instance=ExtResource( 6 )]
-position = Vector2( 160.609, -7.43918 )
+[node name="DestructibleAsteriod7" parent="Destructible Enviro" instance=ExtResource( 4 )]
+position = Vector2( -22.7164, -232.287 )
 
-[node name="Destructible Wall7" parent="Destructible Enviro" instance=ExtResource( 6 )]
-position = Vector2( 177.03, 104.864 )
+[node name="DestructibleAsteriod2" parent="Destructible Enviro" instance=ExtResource( 4 )]
+position = Vector2( 67.0189, -211.402 )
 
-[node name="Interactables" type="Node2D" parent="."]
+[node name="DestructibleAsteriod3" parent="Destructible Enviro" instance=ExtResource( 4 )]
+position = Vector2( 99.2021, -208.822 )
 
-[node name="Crossing Area" type="Area2D" parent="Interactables"]
-position = Vector2( -0.353561, -43.4871 )
+[node name="Environment" type="Node2D" parent="."]
 
-[node name="Crossing" type="Node2D" parent="Interactables/Crossing Area"]
-script = ExtResource( 7 )
+[node name="Asteriod" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -39.7052, 63.6781 )
 
-[node name="InteractableCollection" type="Node2D" parent="Interactables/Crossing Area/Crossing"]
-script = ExtResource( 8 )
-use_global_source = false
-inst_src_conds_path = NodePath("../InstanceCondsSource")
+[node name="Asteriod2" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -19.478, 80.9086 )
 
-[node name="R_Print" type="Node2D" parent="Interactables/Crossing Area/Crossing/InteractableCollection"]
-script = ExtResource( 10 )
-message = "I Have Been Called"
+[node name="Asteriod3" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 7.49152, 83.9052 )
 
-[node name="R_SetVisibility" type="Node2D" parent="Interactables/Crossing Area/Crossing/InteractableCollection"]
-script = ExtResource( 14 )
-state = false
-node = NodePath("../../../../../Environment")
+[node name="Asteriod4" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 40.4543, 74.1662 )
 
-[node name="R_SetCollisions_State" type="Node2D" parent="Interactables/Crossing Area/Crossing/InteractableCollection"]
-script = ExtResource( 13 )
-node_path = NodePath("../../../../../Environment")
+[node name="Asteriod5" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 50.9424, 49.4442 )
 
-[node name="R_MoveNode" type="Node2D" parent="Interactables/Crossing Area/Crossing/InteractableCollection"]
-script = ExtResource( 12 )
-node = NodePath("../../../../../Player")
-target_point = NodePath("../../../Position2D")
+[node name="Asteriod6" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 53.1898, 24.7221 )
 
-[node name="InstanceCondsSource" type="Node2D" parent="Interactables/Crossing Area/Crossing"]
-script = ExtResource( 11 )
+[node name="Asteriod7" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -42.7018, 32.9628 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Crossing Area"]
-shape = SubResource( 2 )
+[node name="Asteriod8" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -46.4476, 2.99661 )
 
-[node name="Position2D" type="Position2D" parent="Interactables/Crossing Area"]
-position = Vector2( 93.9977, -5.36907 )
+[node name="Asteriod9" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -71.1696, -21.7254 )
 
-[node name="SimpleTrigger" type="Node2D" parent="Interactables/Crossing Area"]
+[node name="Asteriod10" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -84.6544, -35.9594 )
+
+[node name="Asteriod11" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -98.1392, -56.1865 )
+
+[node name="Asteriod12" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -98.5596, -86.8792 )
+
+[node name="Asteriod13" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -93.9347, -113.788 )
+
+[node name="Asteriod14" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -91.412, -138.594 )
+
+[node name="Asteriod15" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -93.9347, -162.98 )
+
+[node name="Asteriod16" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 72.0653, 16.0196 )
+
+[node name="Asteriod17" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 95.0653, 15.5196 )
+
+[node name="Asteriod18" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 116.065, 14.0196 )
+
+[node name="Asteriod19" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 128.565, -15.4804 )
+
+[node name="Asteriod20" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 128.565, -41.4804 )
+
+[node name="Asteriod21" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 134.565, -65.4804 )
+
+[node name="Asteriod22" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 139.565, -91.4804 )
+
+[node name="Asteriod23" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 138.565, -118.48 )
+
+[node name="Asteriod24" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 142.565, -140.98 )
+
+[node name="Asteriod25" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 142.565, -163.48 )
+
+[node name="Asteriod26" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 141.065, -185.48 )
+
+[node name="Asteriod27" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 138.565, -210.98 )
+
+[node name="Asteriod28" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 122.816, -229.879 )
+
+[node name="Asteriod29" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -76.8812, -180.742 )
+
+[node name="Asteriod30" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -74.9913, -199.011 )
+
+[node name="Asteriod31" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -73.7314, -221.06 )
+
+[node name="Asteriod32" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -88.2205, -240.588 )
+
+[node name="Asteriod33" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -108.379, -251.298 )
+
+[node name="Asteriod34" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -93.8902, -270.827 )
+
+[node name="Asteriod35" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -89.4804, -290.985 )
+
+[node name="Asteriod36" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -89.4804, -316.184 )
+
+[node name="Asteriod37" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -92.0003, -337.602 )
+
+[node name="Asteriod38" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -96.41, -359.021 )
+
+[node name="Asteriod39" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 134.156, -248.148 )
+
+[node name="Asteriod40" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 139.195, -270.827 )
+
+[node name="Asteriod41" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 144.235, -294.135 )
+
+[node name="Asteriod42" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 158.724, -317.444 )
+
+[node name="Asteriod43" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 173.213, -328.153 )
+
+[node name="Asteriod44" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 176.993, -347.052 )
+
+[node name="Asteriod45" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 171.323, -366.581 )
+
+[node name="Asteriod46" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 160.614, -388.63 )
+
+[node name="Asteriod47" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 165.654, -411.938 )
+
+[node name="Asteriod48" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 180.143, -435.247 )
+
+[node name="Asteriod49" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 194.632, -445.956 )
+
+[node name="Asteriod50" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 198.412, -464.855 )
+
+[node name="Asteriod51" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 192.742, -484.384 )
+
+[node name="Asteriod52" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 165.653, -500.133 )
+
+[node name="Asteriod53" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 136.045, -512.102 )
+
+[node name="Asteriod54" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 115.887, -505.172 )
+
+[node name="Asteriod55" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 83.1286, -512.102 )
+
+[node name="Asteriod56" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 65.4897, -533.52 )
+
+[node name="Asteriod57" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 33.3617, -522.811 )
+
+[node name="Asteriod58" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( 11.3131, -544.86 )
+
+[node name="Asteriod59" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -15.1452, -537.93 )
+
+[node name="Asteriod60" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -33.4141, -558.089 )
+
+[node name="Asteriod61" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -50.423, -534.781 )
+
+[node name="Asteriod62" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -18.925, -518.402 )
+
+[node name="Asteriod63" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -52.3129, -512.732 )
+
+[node name="Asteriod64" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -74.9915, -520.922 )
+
+[node name="Asteriod65" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -76.8814, -498.873 )
+
+[node name="Asteriod66" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -105.23, -525.331 )
+
+[node name="Asteriod67" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -117.829, -525.331 )
+
+[node name="Asteriod68" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -141.137, -515.252 )
+
+[node name="Asteriod69" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -146.177, -538.56 )
+
+[node name="Asteriod70" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -170.745, -520.291 )
+
+[node name="Asteriod71" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -115.309, -353.352 )
+
+[node name="Asteriod72" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -124.758, -377.29 )
+
+[node name="Asteriod73" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -144.287, -359.651 )
+
+[node name="Asteriod74" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -149.957, -382.96 )
+
+[node name="Asteriod75" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -168.226, -367.211 )
+
+[node name="Asteriod76" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -197.834, -368.471 )
+
+[node name="Asteriod77" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -220.512, -367.841 )
+
+[node name="Asteriod78" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -179.565, -388.63 )
+
+[node name="Asteriod79" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -199.094, -347.052 )
+
+[node name="Asteriod80" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -122.239, -337.603 )
+
+[node name="Asteriod81" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -203.503, -390.519 )
+
+[node name="Asteriod82" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -225.552, -343.902 )
+
+[node name="Asteriod83" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -240.041, -379.81 )
+
+[node name="Asteriod84" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -240.041, -360.911 )
+
+[node name="Asteriod85" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -254.53, -391.779 )
+
+[node name="Asteriod86" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -262.09, -365.321 )
+
+[node name="Asteriod87" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -289.178, -384.85 )
+
+[node name="Asteriod88" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -276.579, -405.008 )
+
+[node name="Asteriod89" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -287.288, -357.761 )
+
+[node name="Asteriod90" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -255.79, -337.603 )
+
+[node name="Asteriod91" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -170.115, -545.49 )
+
+[node name="Asteriod92" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -196.574, -542.34 )
+
+[node name="Asteriod93" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -190.904, -560.609 )
+
+[node name="Asteriod94" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -199.724, -517.141 )
+
+[node name="Asteriod95" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -225.552, -551.159 )
+
+[node name="Asteriod96" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -231.222, -530.37 )
+
+[node name="Asteriod98" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -253.495, -533.906 )
+
+[node name="Asteriod99" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -278.951, -523.653 )
+
+[node name="Asteriod100" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -288.497, -512.339 )
+
+[node name="Asteriod101" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -291.679, -498.197 )
+
+[node name="Asteriod102" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -261.627, -564.665 )
+
+[node name="Asteriod103" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -296.629, -485.823 )
+
+[node name="Asteriod104" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -319.61, -464.609 )
+
+[node name="Asteriod105" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -309.357, -510.218 )
+
+[node name="Asteriod106" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -303.346, -446.225 )
+
+[node name="Asteriod107" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -290.972, -416.526 )
+
+[node name="Asteriod108" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -329.156, -490.065 )
+
+[node name="Asteriod109" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -245.717, -562.897 )
+
+[node name="Asteriod97" parent="Environment" instance=ExtResource( 16 )]
+position = Vector2( -220.512, -571.318 )
+
+[node name="Door trig" parent="." instance=ExtResource( 6 )]
+start_tint = Color( 0.207843, 0.890196, 0.168627, 1 )
+
+[node name="Wall" type="Node2D" parent="." groups=[
+"Block 1",
+]]
+
+[node name="Asteriod" parent="Wall" instance=ExtResource( 16 )]
+position = Vector2( -89.4543, -389.75 )
+
+[node name="Asteriod2" parent="Wall" instance=ExtResource( 16 )]
+position = Vector2( -67.591, -408.25 )
+
+[node name="Asteriod3" parent="Wall" instance=ExtResource( 16 )]
+position = Vector2( -62.9661, -431.374 )
+
+[node name="Asteriod4" parent="Wall" instance=ExtResource( 16 )]
+position = Vector2( -75.5795, -461.647 )
+
+[node name="Asteriod5" parent="Wall" instance=ExtResource( 16 )]
+position = Vector2( -89.0339, -488.976 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 19 )
+
+[node name="Win" type="Label" parent="UI"]
+margin_left = 169.948
+margin_top = 252.462
+margin_right = 641.948
+margin_bottom = 324.462
+custom_fonts/font = SubResource( 4 )
+text = " YOU WON <3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lose" type="Label" parent="UI"]
+margin_left = 124.591
+margin_top = 251.202
+margin_right = 739.591
+margin_bottom = 323.202
+custom_fonts/font = SubResource( 4 )
+text = "You Have Lost"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerLabel" type="Label" parent="UI"]
+margin_left = -1.40894
+margin_top = -1.79779
+margin_right = 682.591
+margin_bottom = 70.2022
+custom_fonts/font = SubResource( 6 )
+text = "Time : %s"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LossTimer" type="Timer" parent="UI"]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="RestartTimer" type="Timer" parent="UI"]
+
+[node name="WinField" type="Area2D" parent="." groups=[
+"WinField",
+]]
+position = Vector2( -216.959, -456.244 )
+
+[node name="WinTrigger" type="Node2D" parent="WinField"]
 script = ExtResource( 15 )
-[connection signal="on_enter" from="Interactables/Crossing Area/SimpleTrigger" to="Interactables/Crossing Area/Crossing" method="interact_n"]
+max_interactions = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinField"]
+shape = SubResource( 5 )
+[connection signal="timeout" from="UI/LossTimer" to="UI" method="_on_LossTimer_timeout"]
+[connection signal="timeout" from="UI/RestartTimer" to="UI" method="_on_RestartTimer_timeout"]
+[connection signal="on_body_enter" from="WinField/WinTrigger" to="UI" method="_on_WinTrigger_on_body_enter"]

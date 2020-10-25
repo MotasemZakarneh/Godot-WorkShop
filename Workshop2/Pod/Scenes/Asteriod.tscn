@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Art/Pack 1/Aestroids/aestroid_gay_2.png" type="Texture" id=1]
+[ext_resource path="res://Art/Pack 1/Aestroids/aestroid_gray.png" type="Texture" id=2]
+[ext_resource path="res://Art/Pack 1/Aestroids/aestroid_brown.png" type="Texture" id=3]
+[ext_resource path="res://Art/Pack 1/Aestroids/aestroid_dark.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/ScaleSetter.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/ٍSpriteSetter.gd" type="Script" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 20.1488
+
+[node name="Asteriod" type="StaticBody2D" groups=[
+"HittableEnviro",
+]]
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="SpriteSetter" type="Node2D" parent="."]
+script = ExtResource( 6 )
+sprites = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 2 ) ]
+
+[node name="ScaleSetter" type="Node2D" parent="."]
+script = ExtResource( 5 )
