@@ -3,7 +3,7 @@ class_name Interactable
 
 """
 Base node, that acts as interactable, must contain, InteractableCollections in order to work.
-Must Be Parented To An Area2D, or interact must be called externally
+Must Be Parented To An Area2D, or 'interact' function must be called externally
 """
 
 signal on_interactable_started
@@ -17,6 +17,10 @@ var plays_count = 0
 func _ready():
 	if not is_in_group(interactable_group):
 		add_to_group(interactable_group)
+	pass
+
+func interact_n(_node):
+	interact()
 	pass
 
 func interact():

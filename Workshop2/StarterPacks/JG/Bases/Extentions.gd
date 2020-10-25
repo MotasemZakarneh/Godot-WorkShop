@@ -63,6 +63,17 @@ static func get_child_of_type(node:Node,types : Array):
 	
 	return null
 
+static func get_child_of_name(node:Node,names:Array):
+	var children = []
+	get_children_recursively(node,children)
+	
+	for n in names:
+		for c in children:
+			if c.get("name") != null and c.get("name") == n:
+				return c
+	
+	return null
+
 static func get_children_of_type(node:Node,types : Array):
 	var children = []
 	get_children_recursively(node,children)
@@ -76,7 +87,7 @@ static func get_children_of_type(node:Node,types : Array):
 	
 	return filtered
 
-static func test_groups_on_node(node,groups):
+static func test_groups_on_node(node:Node,groups:Array):
 	for g in groups:
 		if node.is_in_group(g):
 			return true
@@ -90,7 +101,7 @@ static func clamp_magnitude(v1:Vector2,length:float):
 	return clampped
 
 static func is_zero(f:float):
-	return f>0.0001
+	return abs(f)<=0.001
 
 static func make_one (v:Vector2):
 	var oned = Vector2()
@@ -212,3 +223,19 @@ static func get_sprite_frames_all(anims_sets:Array):
 			sprite_frames.set_animation_speed(anim,s.get_animation_speed(anim))
 	
 	return sprite_frames
+
+
+static func get_visual_body(node:Node):
+	var possible_bodies = ["Sprite","AnimatedSprite","VisualBody","MeshInstance2D"]
+	var sprite = get_child_of_name(node,possible_bodies)
+	if sprite == null:
+		sprite = node
+	return node
+
+static func set_collision_state(node:Node,state:bool):
+	var children = get_children_of_type(node,[CollisionShape2D,CollisionPolygon2D])
+	if node is CollisionShape2D or node is CollisionPolygon2D:
+		node.set_deferred("disabled",!state)
+	for c in children:
+		c.set_deferred("disabled",!state)
+	pass

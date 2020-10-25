@@ -25,14 +25,14 @@ func _ready():
 	body = get_parent()
 	damager = Damager.new()
 	damager.set_up(damage,body,damage_type)
-	
+	var _er
 	match damage_mode:
 		DamageMode.Enter:
-			body.connect("area_entered",self,"_on_intersection")
-			body.connect("body_entered",self,"_on_intersection")
+			_er = body.connect("area_entered",self,"_on_intersection")
+			_er = body.connect("body_entered",self,"_on_intersection")
 		DamageMode.Exit:
-			body.connect("area_exited",self,"_on_intersection")
-			body.connect("body_exited",self,"_on_intersection")
+			_er = body.connect("area_exited",self,"_on_intersection")
+			_er = body.connect("body_exited",self,"_on_intersection")
 	
 	pass
 

@@ -10,10 +10,11 @@ export var right_map = "ui_right"
 export var left_map = "ui_left"
 
 export var speed = 300
-export var accel = 100
+export var accel = 800
 export var face_move_dir = true
+export var facing_to_entire_body = true
 export var use_accel = true
-export var saftey_input_threshold = 0.05
+export var saftey_input_threshold = 0.065
 
 var input = Vector2()
 var last_non_zero_input = Vector2()
@@ -24,11 +25,16 @@ var saftey_counter = 0
 
 var mover : Mover
 var body : KinematicBody2D
+var sprite
 
 func _ready():
 	body = get_parent()
 	mover = Mover.new()
 	mover.set_up(body)
+	if facing_to_entire_body:
+		sprite = body
+	else:
+		sprite = Extentions.get_visual_body(body)
 	pass
 
 func _move_update(_delta):
@@ -42,7 +48,7 @@ func _move_fixed_update(delta):
 	vel = mover.move(vel,delta)
 	
 	if face_move_dir:
-		body.rotation = last_non_zero_input.angle()
+		sprite.rotation = last_non_zero_input_safe.angle()
 	pass
 
 func _on_is_locked():
@@ -59,7 +65,6 @@ func _set_vel(delta):
 		MoveMode.WASD:
 			_set_y_vel(delta)
 			_set_x_vel(delta)
-			
 	
 	vel = Extentions.clamp_magnitude(vel,speed)
 	pass
@@ -70,8 +75,10 @@ func _set_y_vel(delta):
 		if Extentions.is_zero(diff):
 			return
 		
-		var dir = sign(diff)
-		vel.y = vel.y + dir * accel*delta
+		#var dir = sign(diff)
+		#vel.y = vel.y + dir * accel * delta
+		vel.y = move_toward(vel.y,target_vel.y,accel*delta)
+		
 		#vel.y =lerp(vel.y,target_vel.y,accel*delta)
 	else:
 		vel.y = target_vel.y
@@ -83,8 +90,9 @@ func _set_x_vel(delta):
 		if Extentions.is_zero(diff):
 			return
 		
-		var dir = sign(diff)
-		vel.x = vel.x + dir * accel*delta
+		#var dir = sign(diff)
+		#vel.x = vel.x + dir * accel*delta
+		vel.x = move_toward(vel.x,target_vel.x,accel*delta)
 		#vel.x =lerp(vel.x,target_vel.x,accel*delta)
 	else:
 		vel.x = target_vel.x

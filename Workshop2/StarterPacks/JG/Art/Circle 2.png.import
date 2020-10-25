@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Circle 2.png-c088d1e493b11500aac4955511fabf79.stex"
+path="res://.import/Circle 2.png-b9e1399db2af72980ed74b1b6aee95fa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Starter Pack/Art/Circle 2.png"
-dest_files=[ "res://.import/Circle 2.png-c088d1e493b11500aac4955511fabf79.stex" ]
+source_file="res://JG/Art/Circle 2.png"
+dest_files=[ "res://.import/Circle 2.png-b9e1399db2af72980ed74b1b6aee95fa.stex" ]
 
 [params]
 
